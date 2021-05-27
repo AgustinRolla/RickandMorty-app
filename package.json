@@ -1,6 +1,6 @@
 {
-  "name": "rick-and-morty-app",
-  "version": "0.1.0",
+  "name": "y",
+  "version": "y",
   "private": true,
   "dependencies": {
     "react": "^17.0.2",
@@ -32,5 +32,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "y",
+  "main": "y",
+  "repository": "y",
+  "author": "y",
+  "license": "y"
 }

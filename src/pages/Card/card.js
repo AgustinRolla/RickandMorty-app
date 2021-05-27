@@ -12,10 +12,16 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
     setStatus("loading");
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) =>
-        response.json().then((data) => setCharacterData(data))
+        response.json().then((data) => {
+          if (data.character === null) {
+            setStatus("error");
+          } else {
+            setCharacterData(data);
+            setStatus("success");
+          }
+        })
       )
-      .catch((error) => setStatus("error"))
-      .finally(setStatus("idle"));
+      .catch((error) => setStatus("error"));
   }, [character]);
 
   const favoritesNames = favorites.map((favorite) => favorite.name);
@@ -25,37 +31,44 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
 
   console.log(isCharacterAdded);
 
-  if (status === "idle") {
+  if (characterData && status === "success") {
     return (
       <>
         <CardPage>
           <Wrapper>
-            {characterData && (
-              <>
+            <CardMinimalist>
+              <Image>
                 <img src={characterData.image} alt="character" />
-                <ButtonsWrapper>
-                  <button onClick={() => history.push("./")}>
-                    Volver a la Home
-                  </button>
-                  <button
-                    onClick={
-                      isCharacterAdded
-                        ? () => deleteFavorite(characterData.name)
-                        : () => addFavorite(characterData)
-                    }
-                  >
-                    {isCharacterAdded ? "Delete Favorite" : "Add Favorite"}
-                  </button>
-                </ButtonsWrapper>
-              </>
-            )}
+              </Image>
+              <Details>
+                <h1>{characterData.name}</h1>
+                <h3>Status: {characterData.status}</h3>
+                <h3>Species: {characterData.species}</h3>
+                <h3>Origin: {characterData.origin.name}</h3>
+                <h3>Location: {characterData.location.name}</h3>
+              </Details>
+            </CardMinimalist>
+            <ButtonsWrapper>
+              <button onClick={() => history.push("./")}>
+                Volver a la Home
+              </button>
+              <button
+                onClick={
+                  isCharacterAdded
+                    ? () => deleteFavorite(characterData.name)
+                    : () => addFavorite(characterData)
+                }
+              >
+                {isCharacterAdded ? "Delete Favorite" : "Add Favorite"}
+              </button>
+            </ButtonsWrapper>
           </Wrapper>
         </CardPage>
       </>
     );
   } else if (status === "loading") {
     return "...............loading";
-  } else if (status === "error") {
+  } else if (!characterData || status === "error") {
     return "Ese personaje no existe";
   }
 };
@@ -79,6 +92,51 @@ const Wrapper = styled.div`
   width: 30%;
 `;
 
+const CardMinimalist = styled.div`
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 310px 115px 80px;
+  grid-template-areas: "image" "text";
+  border-radius: 18px;
+  background: black;
+  color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  font-family: roboto;
+
+  transition: 0 0.5s ease;
+  margin: 30px;
+
+  :hover {
+    transform: scale(1.15);
+    box-shadow: 5px, 5px, 15px rgba (0, 0, 0, 0, 6);
+  }
+`;
+
+const Image = styled.div`
+  grid-area: image;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+
+  img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+`;
+const Details = styled.div`
+  display: column;
+  grid-area: text;
+  text-align: left;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  h3 {
+    margin-left: 15px;
+  }
+`;
+
 const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -97,7 +155,6 @@ const ButtonsWrapper = styled.div`
 
     &:hover {
       filter: brightness(0.8);
-      transform: translateY(-4px);
     }
 
     &:first-child {

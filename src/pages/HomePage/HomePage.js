@@ -14,7 +14,6 @@ export const HomePage = ({ favorites, setCharacter }) => {
   }
 
   function handleFavoriteClick() {
-    console.log("favoritos");
     history.replace("./favorites");
   }
 
@@ -48,13 +47,14 @@ const Home = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   background-image: url("https://i.redd.it/wx9mj52s8kly.jpg");
   background-size: cover;
 `;
 
 const Wrapper = styled.div`
+  margin-top: 9%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +68,7 @@ const SearchBar = styled.input`
 `;
 
 const Logo = styled.img`
-  width: 90%;
+  width: 175%;
   margin-bottom: 20px;
 `;
 const ButtonsWrapper = styled.div`

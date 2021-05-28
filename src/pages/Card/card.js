@@ -69,7 +69,14 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
   } else if (status === "loading") {
     return "...............loading";
   } else if (!characterData || status === "error") {
-    return "Ese personaje no existe";
+    return (
+      <>
+        "Ese personaje no existe";
+        <ButtonsWrapper>
+          <button onClick={() => history.push("./")}>Volver a la Home</button>
+        </ButtonsWrapper>
+      </>
+    );
   }
 };
 

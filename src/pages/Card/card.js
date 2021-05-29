@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { useHistory } from "react-router";
+import backgroundimage from "../HomePage/backgroundimage.jpg";
 
 export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
   const [characterData, setCharacterData] = React.useState();
@@ -24,10 +25,10 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
       .catch((error) => setStatus("error"));
   }, [character]);
 
-  const favoritesNames = favorites.map((favorite) => favorite.name);
+  const favoritesCharacters = favorites.map((favorite) => favorite.id);
 
   const isCharacterAdded =
-    characterData && favoritesNames.includes(characterData.name);
+    characterData && favoritesCharacters.includes(characterData.id);
 
   console.log(isCharacterAdded);
 
@@ -55,7 +56,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
               <button
                 onClick={
                   isCharacterAdded
-                    ? () => deleteFavorite(characterData.name)
+                    ? () => deleteFavorite(characterData.id)
                     : () => addFavorite(characterData)
                 }
               >
@@ -87,7 +88,7 @@ const CardPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("https://i.redd.it/wx9mj52s8kly.jpg");
+  background-image: url(${backgroundimage});
   background-size: cover;
 `;
 

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { LogoURL } from "./constants";
 import { useHistory } from "react-router";
+import logo from "./logo.png";
+import backgroundimage from "./backgroundimage.jpg";
 
 export const HomePage = ({ favorites, setCharacter }) => {
   const [input, setInput] = React.useState();
@@ -14,17 +15,24 @@ export const HomePage = ({ favorites, setCharacter }) => {
   }
 
   function handleFavoriteClick() {
-    history.replace("./favorites");
+    console.log("boton favorito");
+    history.replace("./Favorites");
   }
 
   function handleInputChange(event) {
     setInput(event.target.value);
   }
 
+  const handleRandomClick = () => {
+    const randomCharacter = Math.floor(Math.random() * 671) + 1;
+    setCharacter(randomCharacter);
+    history.replace("./card");
+  };
+
   return (
     <Home>
       <Wrapper>
-        <Logo src={LogoURL} alt="Rick and Morty Logo" />
+        <Logo src={logo} alt="Rick and Morty Logo" />
         <SearchBar
           placeholder="Buscá tu personaje"
           value={input}
@@ -33,7 +41,7 @@ export const HomePage = ({ favorites, setCharacter }) => {
         />
         <ButtonsWrapper>
           <button onClick={handleSearchClick}>Search</button>
-          <button>Random</button>
+          <button onClick={handleRandomClick}>Random</button>
           <button onClick={handleFavoriteClick}>Favorites</button>
         </ButtonsWrapper>
         {favorites.map((favorite) => `${favorite.name}`)}
@@ -49,7 +57,7 @@ const Home = styled.div`
   flex-direction: column;
   justify-content: top;
   align-items: center;
-  background-image: url("https://i.redd.it/wx9mj52s8kly.jpg");
+  background-image: url(${backgroundimage});
   background-size: cover;
 `;
 

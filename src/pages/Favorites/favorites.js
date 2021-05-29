@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import background from "../background.jpg";
 
 export const Favorites = ({ favorites, setCharacter }) => {
   const [input, setInput] = React.useState();
@@ -41,7 +42,7 @@ const Home = styled.div`
   flex-direction: column;
   justify-content: top;
   align-items: center;
-  background-image: url("https://i.redd.it/wx9mj52s8kly.jpg");
+  background-image: ${background};
   background-size: cover;
 `;
 

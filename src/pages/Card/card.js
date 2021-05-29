@@ -2,6 +2,8 @@ import styled from "styled-components";
 import React from "react";
 import { useHistory } from "react-router";
 import backgroundimage from "../HomePage/backgroundimage.jpg";
+import loadingimg from "./loading.gif";
+import unknow from "./unknow.jpg";
 
 export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
   const [characterData, setCharacterData] = React.useState();
@@ -9,16 +11,12 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
 
   const history = useHistory();
 
-  function redirectError() {
-    history.push("./error");
-  }
-
   React.useEffect(() => {
-    setStatus("loading");
+    setTimeout(setStatus("loading"), 3000);
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) =>
         response.json().then((data) => {
-          if (data.character === null) {
+          if (data.character === null || undefined.characterData) {
             setStatus("error");
           } else {
             setCharacterData(data);
@@ -72,9 +70,43 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
       </>
     );
   } else if (status === "loading") {
-    return "...............loading";
+    return (
+      <>
+        <CardPage>
+          <Wrapper>
+            <Image>
+              <img src={loadingimg} alt="error character" />
+            </Image>
+          </Wrapper>
+        </CardPage>
+      </>
+    );
   } else if (!characterData || status === "error") {
-    return redirectError();
+    return (
+      <>
+        <CardPage>
+          <Wrapper>
+            <CardMinimalist>
+              <Image>
+                <img src={unknow} alt="Unkonw Character" />
+              </Image>
+              <Details>
+                <h1>Unkonw Character</h1>
+                <h3>Status: Unkonw</h3>
+                <h3>Species: Unkonw</h3>
+                <h3>Origin: Unkonw</h3>
+                <h3>Location: Unkonwn</h3>
+              </Details>
+            </CardMinimalist>
+            <ButtonsWrapper>
+              <button onClick={() => history.push("./")}>
+                Volver a la Home
+              </button>
+            </ButtonsWrapper>
+          </Wrapper>
+        </CardPage>
+      </>
+    );
   }
 };
 

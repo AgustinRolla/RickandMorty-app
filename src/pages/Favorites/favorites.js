@@ -3,34 +3,16 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import backgroundimage from "../HomePage/backgroundimage.jpg";
 
-export const Favorites = ({ favorites, setCharacter }) => {
-  const [input, setInput] = React.useState();
-
+export const Favorites = ({ favorites }) => {
   const history = useHistory();
-
-  function handleSearchClick() {
-    setCharacter(input.toLowerCase());
-    history.replace("./card");
-  }
-
-  function handleFavoriteClick() {
-    console.log("boton favorito");
-    history.replace("./favorites");
-  }
-
-  function handleInputChange(event) {
-    setInput(event.target.value);
-  }
-
-  const handleRandomClick = () => {
-    const randomCharacter = Math.floor(Math.random() * 671) + 1;
-    setCharacter(randomCharacter);
-    history.replace("./card");
-  };
 
   return (
     <Home>
       <Wrapper>{favorites.map((favorite) => `${favorite.name}`)}</Wrapper>
+
+      <ButtonsWrapper>
+        <button onClick={() => history.push("./")}>Volver a la Home</button>
+      </ButtonsWrapper>
     </Home>
   );
 };
@@ -55,15 +37,6 @@ const Wrapper = styled.div`
   width: 30%;
 `;
 
-const SearchBar = styled.input`
-  width: 100%;
-  margin-bottom: 20px;
-`;
-
-const Logo = styled.img`
-  width: 175%;
-  margin-bottom: 20px;
-`;
 const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;

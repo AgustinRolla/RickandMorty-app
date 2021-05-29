@@ -16,7 +16,7 @@ export const HomePage = ({ favorites, setCharacter }) => {
 
   function handleFavoriteClick() {
     console.log("boton favorito");
-    history.replace("./Favorites");
+    history.replace("./favorites");
   }
 
   function handleInputChange(event) {

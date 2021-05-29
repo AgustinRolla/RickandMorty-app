@@ -16,7 +16,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) =>
         response.json().then((data) => {
-          if (data.character === null || undefined.characterData) {
+          if (data.character === null || undefined) {
             setStatus("error");
           } else {
             setCharacterData(data);
@@ -59,7 +59,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
                 onClick={
                   isCharacterAdded
                     ? () => deleteFavorite(characterData.id)
-                    : () => addFavorite(characterData)
+                    : () => addFavorite(characterData.id)
                 }
               >
                 {isCharacterAdded ? "Delete Favorite" : "Add Favorite"}
@@ -88,14 +88,14 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
           <Wrapper>
             <CardMinimalist>
               <Image>
-                <img src={unknow} alt="Unkonw Character" />
+                <img src={unknow} alt="Unknow Character" />
               </Image>
               <Details>
-                <h1>Unkonw Character</h1>
-                <h3>Status: Unkonw</h3>
-                <h3>Species: Unkonw</h3>
-                <h3>Origin: Unkonw</h3>
-                <h3>Location: Unkonwn</h3>
+                <h1>Unknow Character</h1>
+                <h3>Status: Unknow</h3>
+                <h3>Species: Unknow</h3>
+                <h3>Origin: Unknow</h3>
+                <h3>Location: Unknow</h3>
               </Details>
             </CardMinimalist>
             <ButtonsWrapper>

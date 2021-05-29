@@ -9,6 +9,10 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
 
   const history = useHistory();
 
+  function redirectError() {
+    history.push("./error");
+  }
+
   React.useEffect(() => {
     setStatus("loading");
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
@@ -70,7 +74,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
   } else if (status === "loading") {
     return "...............loading";
   } else if (!characterData || status === "error") {
-    return history.push("./error");
+    return redirectError();
   }
 };
 

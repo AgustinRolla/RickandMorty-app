@@ -16,7 +16,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) =>
         response.json().then((data) => {
-          if (data.character === null || undefined) {
+          if (data.character === null) {
             setStatus("error");
           } else {
             setCharacterData(data);

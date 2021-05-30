@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Card, HomePage } from "../pages";
-import { Favorites } from "../pages";
+import { Card, FavoritePage, HomePage } from "../pages";
 
 export const Router = () => {
   const [character, setCharacter] = React.useState("");
@@ -35,7 +34,7 @@ export const Router = () => {
           />
         </Route>
         <Route path="/favorites">
-          <Favorites favorites={favorites} deleteFavorite={deleteFavorite} />
+          <FavoritePage favorites={favorites} deleteFavorite={deleteFavorite} />
         </Route>
         <Route path="/">
           <HomePage favorites={favorites} setCharacter={hanldeSetCharacter} />

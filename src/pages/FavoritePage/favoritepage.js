@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import backgroundimage from "../HomePage/backgroundimage.jpg";
 
-export const Favorites = ({ favorites }) => {
+export const FavoritePage = ({ favorites, deleteFavorites }) => {
   const history = useHistory();
 
   return (

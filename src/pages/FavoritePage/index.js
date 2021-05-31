@@ -1,1 +1,2 @@
-export * from "/favoritepage";
+/* export * from "/favoritepage";
+ */

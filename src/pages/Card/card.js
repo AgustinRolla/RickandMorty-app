@@ -26,13 +26,11 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
       )
       .catch((error) => setStatus("error"));
   }, [character]);
-  console.log("character: " + character);
-  console.log("setCharacterData: " + setCharacterData);
 
-  const favoritesCharacters = favorites.map((favorite) => favorite.name);
+  const favoritesNames = favorites.map((favorite) => favorite.name);
 
   const isCharacterAdded =
-    characterData && favoritesCharacters.includes(characterData.name);
+    characterData && favoritesNames.includes(characterData.name);
 
   console.log("isCharacterAdded: " + isCharacterAdded);
 
@@ -61,7 +59,7 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
                 onClick={
                   isCharacterAdded
                     ? () => deleteFavorite(characterData.name)
-                    : () => addFavorite(characterData.name)
+                    : () => addFavorite(characterData)
                 }
               >
                 {isCharacterAdded ? "Delete Favorite" : "Add Favorite"}

@@ -1,3 +1,3 @@
 Problema al realizar el search en la API por nombre y obtener los datos, actualmente está por ID.
-Error al redirigir a la página de favorites.js
+Error al redirigir a la página de favorites.js "Attempted import error: 'FavoritePage' is not exported from '../pages'"
 Al buscar un personaje inexistente, se rompe y me tira "TypeError: characterData.origin is undefined"

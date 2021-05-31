@@ -10,8 +10,12 @@ export const HomePage = ({ favorites, setCharacter }) => {
   const history = useHistory();
 
   function handleSearchClick() {
-    setCharacter(input.toLowerCase());
-    history.replace("./card");
+    if (input === null || input === undefined) {
+      history.replace("./");
+    } else {
+      setCharacter(input.toLowerCase());
+      history.replace("./card");
+    }
   }
 
   function handleFavoriteClick() {

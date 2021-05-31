@@ -13,26 +13,28 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
 
   React.useEffect(() => {
     setTimeout(setStatus("loading"), 3000);
-    fetch(`https://rickandmortyapi.com/api/character/${character}`)
+    fetch(`https://rickandmortyapi.com/api/character/?name=${character}`)
       .then((response) =>
         response.json().then((data) => {
-          if (data.character === null) {
+          if (data.results === null) {
             setStatus("error");
           } else {
-            setCharacterData(data);
+            setCharacterData(data.results[0]);
             setStatus("success");
           }
         })
       )
       .catch((error) => setStatus("error"));
   }, [character]);
+  console.log("character: " + character);
+  console.log("setCharacterData: " + setCharacterData);
 
-  const favoritesCharacters = favorites.map((favorite) => favorite.id);
+  const favoritesCharacters = favorites.map((favorite) => favorite.name);
 
   const isCharacterAdded =
-    characterData && favoritesCharacters.includes(characterData.id);
+    characterData && favoritesCharacters.includes(characterData.name);
 
-  console.log(isCharacterAdded);
+  console.log("isCharacterAdded: " + isCharacterAdded);
 
   if (characterData && status === "success") {
     return (
@@ -58,8 +60,8 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
               <button
                 onClick={
                   isCharacterAdded
-                    ? () => deleteFavorite(characterData.id)
-                    : () => addFavorite(characterData.id)
+                    ? () => deleteFavorite(characterData.name)
+                    : () => addFavorite(characterData.name)
                 }
               >
                 {isCharacterAdded ? "Delete Favorite" : "Add Favorite"}

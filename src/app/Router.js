@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Card, HomePage } from "../pages";
+import { Card, CardRnd, HomePage } from "../pages";
 /* import { FavoritePage } from "../pages"; */
 
 export const Router = () => {
@@ -28,6 +28,14 @@ export const Router = () => {
       <Switch>
         <Route path="/card">
           <Card
+            character={character}
+            addFavorite={handleAddFavorite}
+            favorites={favorites}
+            deleteFavorite={deleteFavorite}
+          />
+        </Route>
+        <Route path="/cardrnd">
+          <CardRnd
             character={character}
             addFavorite={handleAddFavorite}
             favorites={favorites}

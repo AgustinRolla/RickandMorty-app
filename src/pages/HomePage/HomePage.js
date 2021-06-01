@@ -30,7 +30,7 @@ export const HomePage = ({ favorites, setCharacter }) => {
   const handleRandomClick = () => {
     const randomCharacter = Math.floor(Math.random() * 671) + 1;
     setCharacter(randomCharacter);
-    history.replace("./card");
+    history.replace("./cardrnd");
   };
 
   return (

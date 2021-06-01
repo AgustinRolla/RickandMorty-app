@@ -2,10 +2,15 @@ import styled from "styled-components";
 import React from "react";
 import { useHistory } from "react-router";
 import backgroundimage from "../HomePage/backgroundimage.jpg";
-import loadingimg from "./loading.gif";
-import unknow from "./unknow.jpg";
+import loadingimg from "../Card/loading.gif";
+import unknow from "../Card/unknow.jpg";
 
-export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
+export const CardRnd = ({
+  character,
+  addFavorite,
+  favorites,
+  deleteFavorite,
+}) => {
   const [characterData, setCharacterData] = React.useState();
   const [status, setStatus] = React.useState("idle");
   const history = useHistory();
@@ -13,13 +18,13 @@ export const Card = ({ character, addFavorite, favorites, deleteFavorite }) => {
   React.useEffect(() => {
     setTimeout(setStatus("loading"), 3000);
 
-    fetch(`https://rickandmortyapi.com/api/character/?name=${character}`)
+    fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) =>
         response.json().then((data) => {
           if (data.results === null) {
             setStatus("error");
           } else {
-            setCharacterData(data.results[0]);
+            setCharacterData(data);
             setStatus("success");
           }
         })

@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import logo from "./logo.png";
 import backgroundimage from "./backgroundimage.jpg";
 
-export const HomePage = ({ favorites, setCharacter }) => {
+export const HomePage = ({ setCharacter }) => {
   const [input, setInput] = React.useState();
 
   const history = useHistory();

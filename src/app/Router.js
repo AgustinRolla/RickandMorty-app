@@ -42,10 +42,7 @@ export const Router = () => {
           />
         </Route>
         <Route path="/FavoritesCard">
-          <FavoritesCard
-            favorites={favorites}
-            setCharacter={hanldeSetCharacter}
-          />
+          <FavoritesCard favorites={favorites} />
         </Route>
         <Route path="/">
           <HomePage favorites={favorites} setCharacter={hanldeSetCharacter} />

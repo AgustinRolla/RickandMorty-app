@@ -1,6 +1,10 @@
-# React Application
+# Rick and Morty App
 
-## Tech:
+## React Application
+
+- Deploy in Vercel: https://rick-and-morty-app-two.vercel.app/
+
+### Tech:
 
 - HTML
 - CSS

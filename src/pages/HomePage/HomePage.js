@@ -20,7 +20,7 @@ export const HomePage = ({ favorites, setCharacter }) => {
 
   function handleFavoriteClick() {
     console.log("boton favorito");
-    history.replace("./favorites");
+    history.replace("./FavoritesCard");
   }
 
   function handleInputChange(event) {
@@ -48,7 +48,6 @@ export const HomePage = ({ favorites, setCharacter }) => {
           <button onClick={handleRandomClick}>Random</button>
           <button onClick={handleFavoriteClick}>Favorites</button>
         </ButtonsWrapper>
-        {favorites.map((favorite) => `${favorite.name}`)}
       </Wrapper>
     </Home>
   );
